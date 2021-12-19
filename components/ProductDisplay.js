@@ -9,7 +9,7 @@ app.component('product-display',{
           </div>
           <div class="product-info">
             <h1>{{ title }}</h1>
-
+            <p>Shipping : {{shipping}}</p>
             <p v-if="inStock">In Stock</p>
             <p v-else>Out of Stock</p>
             <ul>
@@ -29,6 +29,12 @@ app.component('product-display',{
         </div>
       </div>
     `,
+    props: {
+        premium: {
+            type: Boolean,
+            required: true,
+        }
+    },
     data() {
         return {
             product: 'Socks',
@@ -58,6 +64,12 @@ app.component('product-display',{
         },
         inStock() {
             return this.variants[this.selectedVariant].image
+        },
+        shipping(){
+            if(this.premium){
+                return 'Free'
+            }
+            return "€2.99"
         }
     }
 })
