@@ -9,13 +9,10 @@ app.component('product-display',{
           </div>
           <div class="product-info">
             <h1>{{ title }}</h1>
-            <p>Shipping : {{shipping}}</p>
+            <p>Shipping : {{ shipping }}</p>
             <p v-if="inStock">In Stock</p>
             <p v-else>Out of Stock</p>
-            <ul>
-              <li v-for="detail in details">{{ detail }}</li>
-            </ul>
-
+            <product-details :details="details"></product-details>
             <div 
               v-for="(variant, index) in variants" 
               :key="variant.id" 
